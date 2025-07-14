@@ -1,0 +1,17 @@
+services:
+  linbpq:
+
+    build: linbpq/.
+    restart: always
+    ports:
+      - 8081:80 
+    volumes:
+      - ./linbpq/bpq32.cfg:/opt/linbpq/bpq32.cfg
+      - ./linbpq/BPQNODES.dat:/opt/linbpq/BPQNODES.dat
+  direwolf:
+    build: direwolf/
+    restart: always
+    devices:
+      - /dev/snd:/dev/snd
+    environment:
+      - ADEVICE="0"
